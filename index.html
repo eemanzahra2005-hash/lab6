@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 06</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#lab06">Lab 06</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+
+    <!-- Lab 06 -->
+    <section id="lab06" class="lab06-section">
+      <h2 class="mb-4">Lab 06</h2>
+
+      <!-- Task 1 -->
+      <section id="task1" class="lab06-section card mb-4">
+        <div class="card-body">
+          <h3 class="card-title h4">Task 1: Interactive Course Planner</h3>
+
+          <div class="input-group mb-3">
+            <input type="text" id="task1Input" class="form-control" placeholder="Enter a course name" aria-label="Course name">
+            <button type="button" id="task1AddBtn" class="btn btn-primary">Add Course</button>
+          </div>
+
+          <div id="task1Output" class="lab06-output mb-3" aria-live="polite"></div>
+
+          <div class="row g-2 text-center mb-3">
+            <div class="col-4">
+              <div class="card h-100">
+                <div class="card-body py-2">
+                  <div class="small text-muted">Total</div>
+                  <div class="fs-4 fw-bold" id="task1Total">0</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card h-100">
+                <div class="card-body py-2">
+                  <div class="small text-muted">Completed</div>
+                  <div class="fs-4 fw-bold" id="task1Completed">0</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card h-100">
+                <div class="card-body py-2">
+                  <div class="small text-muted">Remaining</div>
+                  <div class="fs-4 fw-bold" id="task1Remaining">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul id="task1List" class="list-group mb-3"></ul>
+
+          <div class="d-flex flex-wrap gap-2">
+            <button type="button" id="task1HighlightBtn" class="btn btn-outline-warning">Highlight Longest</button>
+            <button type="button" id="task1ClearBtn" class="btn btn-outline-danger">Clear All</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Task 2 -->
+      <section id="task2" class="lab06-section card mb-4">
+        <div class="card-body">
+          <h3 class="card-title h4">Task 2: Live Student ID Card Generator</h3>
+
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <form id="task2Form" novalidate>
+                <div class="mb-3">
+                  <label for="task2Name" class="form-label">Full Name</label>
+                  <input type="text" id="task2Name" class="form-control" maxlength="30" placeholder="e.g. Ali Khan">
+                  <div class="form-text" id="task2NameCounter">Characters left: 30</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="task2Roll" class="form-label">Roll Number</label>
+                  <input type="text" id="task2Roll" class="form-control" placeholder="e.g. 22-CS-001">
+                </div>
+
+                <div class="mb-3">
+                  <label for="task2Dept" class="form-label">Department</label>
+                  <select id="task2Dept" class="form-select">
+                    <option value="">Select department</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Business Administration">Business Administration</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="task2Semester" class="form-label">Semester</label>
+                  <input type="number" id="task2Semester" class="form-control" min="1" max="8" placeholder="1 to 8">
+                </div>
+
+                <div class="mb-3">
+                  <label for="task2Color" class="form-label">Card Color</label>
+                  <select id="task2Color" class="form-select">
+                    <option value="#ffffff">White</option>
+                    <option value="#cfe2ff">Blue</option>
+                    <option value="#d1e7dd">Green</option>
+                    <option value="#fff3cd">Yellow</option>
+                    <option value="#f8d7da">Pink</option>
+                  </select>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="task2ShowCgpa">
+                  <label class="form-check-label" for="task2ShowCgpa">Show CGPA Badge</label>
+                </div>
+
+                <button type="button" id="task2ResetBtn" class="btn btn-outline-secondary">Reset</button>
+              </form>
+
+              <div id="task2Output" class="lab06-output mt-3" aria-live="polite"></div>
+
+              <div class="mt-4">
+                <label for="task2Summary" class="form-label">Download Summary</label>
+                <textarea id="task2Summary" class="form-control font-monospace" rows="6" readonly></textarea>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card id-card shadow-sm" id="task2Card">
+                <div class="card-header fw-semibold text-center">Student ID Card</div>
+                <div class="card-body" id="task2CardBody">
+                  <h4 class="mb-3" id="task2CardName">Your Name</h4>
+                  <p class="mb-1"><strong>Roll No:</strong> <span id="task2CardRoll">Roll Number</span></p>
+                  <p class="mb-1"><strong>Department:</strong> <span id="task2CardDept">Department</span></p>
+                  <p class="mb-0" id="task2CardSemester">Semester</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Task 3 -->
+      <section id="task3" class="lab06-section card mb-4">
+        <div class="card-body">
+          <h3 class="card-title h4">Task 3: Course Registration Form</h3>
+
+          <div class="row">
+            <div class="col-lg-8">
+              <form id="task3Form" novalidate>
+                <div class="field mb-3">
+                  <label for="task3Name" class="form-label">Full Name</label>
+                  <input type="text" id="task3Name" name="fullName" class="form-control" required minlength="3" placeholder="e.g. Ali Khan">
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="field mb-3">
+                  <label for="task3Email" class="form-label">Email</label>
+                  <input type="email" id="task3Email" name="email" class="form-control" required placeholder="name@example.com">
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="field mb-3">
+                  <label for="task3Phone" class="form-label">Phone</label>
+                  <input type="text" id="task3Phone" name="phone" class="form-control" required inputmode="tel" pattern="03[0-9]{9}" title="Phone must look like 03001234567." placeholder="03001234567">
+                  <div id="task3PhoneMessage" class="small mt-1" aria-live="polite"></div>
+                </div>
+
+                <div class="field mb-3">
+                  <label for="task3Dob" class="form-label">Date of Birth</label>
+                  <input type="date" id="task3Dob" name="dob" class="form-control" required>
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="field mb-3">
+                  <label for="task3Course" class="form-label">Course</label>
+                  <select id="task3Course" name="course" class="form-select" required>
+                    <option value="">Select a course</option>
+                    <option value="Full Stack Web Development">Full Stack Web Development</option>
+                    <option value="Data Structures">Data Structures</option>
+                    <option value="Database Systems">Database Systems</option>
+                    <option value="Artificial Intelligence">Artificial Intelligence</option>
+                  </select>
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="field mb-3">
+                  <label for="task3Password" class="form-label">Password</label>
+                  <input type="password" id="task3Password" name="password" class="form-control" required minlength="8" placeholder="At least 8 characters">
+                  <div class="form-text">Use at least 8 characters, including a digit.</div>
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="field mb-3">
+                  <label for="task3ConfirmPassword" class="form-label">Confirm Password</label>
+                  <input type="password" id="task3ConfirmPassword" name="confirmPassword" class="form-control" required>
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="task3ShowPassword">
+                  <label class="form-check-label" for="task3ShowPassword">Show Password</label>
+                </div>
+
+                <div class="field form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="task3Terms" name="terms" required>
+                  <label class="form-check-label" for="task3Terms">I accept the terms and conditions</label>
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <button type="submit" id="task3SubmitBtn" class="btn btn-primary">Register</button>
+              </form>
+
+              <div id="task3Output" class="lab06-output mt-4" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Task 4 -->
+      <section id="task4" class="lab06-section card mb-4">
+        <div class="card-body">
+          <h3 class="card-title h4 mb-3">Task 4: Student Management Dashboard</h3>
+
+          <div id="task4Output" class="lab06-output mb-3" aria-live="polite"></div>
+
+          <div class="row g-3 mb-4 text-center">
+            <div class="col-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body py-2">
+                  <div class="small text-muted">Total Students</div>
+                  <div class="fs-4 fw-bold" id="task4StatTotal">0</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body py-2">
+                  <div class="small text-muted">Average CGPA</div>
+                  <div class="fs-4 fw-bold" id="task4StatAverage">N/A</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body py-2">
+                  <div class="small text-muted">Highest CGPA</div>
+                  <div class="fs-4 fw-bold" id="task4StatHighest">N/A</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="card h-100">
+                <div class="card-body py-2">
+                  <div class="small text-muted">Academic Warning</div>
+                  <div class="fs-4 fw-bold" id="task4StatWarning">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="h5 mb-3">Add Student</h4>
+                  <form id="task4AddForm" novalidate>
+                    <div class="mb-3">
+                      <label for="task4Name" class="form-label">Full Name</label>
+                      <input type="text" id="task4Name" class="form-control" required minlength="3" placeholder="e.g. Sara Ahmed">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="task4Roll" class="form-label">Roll Number</label>
+                      <input type="text" id="task4Roll" class="form-control" required pattern="BSCS-[0-9]{3}" title="Roll number must look like BSCS-001." placeholder="BSCS-001">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="task4Dept" class="form-label">Department</label>
+                      <select id="task4Dept" class="form-select" required>
+                        <option value="">Select department</option>
+                      </select>
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="task4Semester" class="form-label">Semester</label>
+                      <input type="number" id="task4Semester" class="form-control" required min="1" max="8" step="1" data-range-error="Semester must be between 1 and 8." data-step-error="Semester must be a whole number.">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="task4Cgpa" class="form-label">CGPA</label>
+                      <input type="number" id="task4Cgpa" class="form-control" required min="0" max="4" step="0.01" data-range-error="CGPA must be between 0 and 4." data-step-error="CGPA can have at most 2 decimal places.">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="task4Email" class="form-label">Email</label>
+                      <input type="email" id="task4Email" class="form-control" required placeholder="name@example.com">
+                      <div class="invalid-feedback"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Add Student</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-8">
+              <div class="row g-2 mb-3">
+                <div class="col-md-5">
+                  <input type="text" id="task4Search" class="form-control" placeholder="Search by name or roll number" aria-label="Search students">
+                </div>
+                <div class="col-md-4">
+                  <select id="task4DeptFilter" class="form-select" aria-label="Filter by department">
+                    <option value="">All Departments</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <button type="button" id="task4SortBtn" class="btn btn-outline-secondary w-100">Sort by CGPA</button>
+                </div>
+              </div>
+
+              <div id="task4Grid" class="row g-3"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-top bg-white py-3 mt-4">
+    <div class="container small text-muted text-center">
+      Name: YOUR NAME | Roll No: YOUR ROLL NO | Course: CS-301L Full Stack Web Development | Lab 06
+    </div>
+  </footer>
+
+  <!-- Task 4: Edit CGPA modal -->
+  <div class="modal fade" id="task4EditModal" tabindex="-1" aria-labelledby="task4EditTitle">
+    <div class="modal-dialog">
+      <form class="modal-content" id="task4EditForm" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title" id="task4EditTitle">Edit CGPA</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">
+            <strong id="task4EditName"></strong>
+            <span class="text-muted" id="task4EditRoll"></span>
+          </p>
+          <div class="mb-3">
+            <label for="task4EditCgpa" class="form-label">New CGPA</label>
+            <input type="number" id="task4EditCgpa" class="form-control" required min="0" max="4" step="0.01" data-range-error="CGPA must be between 0 and 4." data-step-error="CGPA can have at most 2 decimal places.">
+            <div class="invalid-feedback"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save CGPA</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lab06.js"></script>
+</body>
+</html>
