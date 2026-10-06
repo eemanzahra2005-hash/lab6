@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 06</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- Fixed background: colorful blobs (blurred by CSS) and a faint grid -->
+  <div class="bg-layer" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+  </div>
+
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark app-navbar sticky-top">
     <div class="container">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#lab06">Lab 06</a>
-        </li>
-      </ul>
+      <a class="navbar-brand brand-logo" href="#lab06"><i class="bi bi-mortarboard-fill"></i> Lab 06</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#task1">Task 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#task2">Task 2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#task3">Task 3</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#task4">Task 4</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -24,42 +50,61 @@
 
     <!-- Lab 06 -->
     <section id="lab06" class="lab06-section">
-      <h2 class="mb-4">Lab 06</h2>
+
+      <!-- Hero -->
+      <header class="hero text-center">
+        <span class="hero-chip"><i class="bi bi-code-slash"></i> CS-301L</span>
+        <h2 class="hero-title">Lab 06</h2>
+        <p class="hero-sub">DOM Manipulation, Events, Form Validation and Dynamic Updates</p>
+        <nav class="hero-pills" aria-label="Jump to a task">
+          <a class="pill-link" href="#task1"><i class="bi bi-journal-check"></i> Task 1</a>
+          <a class="pill-link" href="#task2"><i class="bi bi-card-heading"></i> Task 2</a>
+          <a class="pill-link" href="#task3"><i class="bi bi-pencil-square"></i> Task 3</a>
+          <a class="pill-link" href="#task4"><i class="bi bi-people-fill"></i> Task 4</a>
+        </nav>
+      </header>
 
       <!-- Task 1 -->
       <section id="task1" class="lab06-section card mb-4">
         <div class="card-body">
-          <h3 class="card-title h4">Task 1: Interactive Course Planner</h3>
+          <header class="task-header">
+            <span class="task-num">01</span>
+            <span class="task-icon"><i class="bi bi-journal-check"></i></span>
+            <div class="task-heading">
+              <h3 class="card-title h4">Task 1: Interactive Course Planner</h3>
+              <p class="task-sub">Add courses, mark them done, and spot the longest name.</p>
+            </div>
+          </header>
 
           <div class="input-group mb-3">
             <input type="text" id="task1Input" class="form-control" placeholder="Enter a course name" aria-label="Course name">
-            <button type="button" id="task1AddBtn" class="btn btn-primary">Add Course</button>
+            <button type="button" id="task1AddBtn" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Course</button>
           </div>
 
           <div id="task1Output" class="lab06-output mb-3" aria-live="polite"></div>
 
           <div class="row g-2 text-center mb-3">
             <div class="col-4">
-              <div class="card h-100">
-                <div class="card-body py-2">
+              <div class="card h-100 stat-chip stat-info">
+                <div class="card-body">
                   <div class="small text-muted">Total</div>
-                  <div class="fs-4 fw-bold" id="task1Total">0</div>
+                  <div class="stat-value" id="task1Total">0</div>
                 </div>
               </div>
             </div>
             <div class="col-4">
-              <div class="card h-100">
-                <div class="card-body py-2">
+              <div class="card h-100 stat-chip stat-success">
+                <div class="card-body">
                   <div class="small text-muted">Completed</div>
-                  <div class="fs-4 fw-bold" id="task1Completed">0</div>
+                  <div class="stat-value" id="task1Completed">0</div>
                 </div>
               </div>
             </div>
             <div class="col-4">
-              <div class="card h-100">
-                <div class="card-body py-2">
+              <div class="card h-100 stat-chip stat-warning">
+                <div class="card-body">
                   <div class="small text-muted">Remaining</div>
-                  <div class="fs-4 fw-bold" id="task1Remaining">0</div>
+                  <div class="stat-value" id="task1Remaining">0</div>
                 </div>
               </div>
             </div>
@@ -68,8 +113,8 @@
           <ul id="task1List" class="list-group mb-3"></ul>
 
           <div class="d-flex flex-wrap gap-2">
-            <button type="button" id="task1HighlightBtn" class="btn btn-outline-warning">Highlight Longest</button>
-            <button type="button" id="task1ClearBtn" class="btn btn-outline-danger">Clear All</button>
+            <button type="button" id="task1HighlightBtn" class="btn btn-outline-warning"><i class="bi bi-stars"></i> Highlight Longest</button>
+            <button type="button" id="task1ClearBtn" class="btn btn-outline-danger"><i class="bi bi-trash3"></i> Clear All</button>
           </div>
         </div>
       </section>
@@ -77,7 +122,14 @@
       <!-- Task 2 -->
       <section id="task2" class="lab06-section card mb-4">
         <div class="card-body">
-          <h3 class="card-title h4">Task 2: Live Student ID Card Generator</h3>
+          <header class="task-header">
+            <span class="task-num">02</span>
+            <span class="task-icon"><i class="bi bi-card-heading"></i></span>
+            <div class="task-heading">
+              <h3 class="card-title h4">Task 2: Live Student ID Card Generator</h3>
+              <p class="task-sub">Fill in the form and watch the ID card update as you type.</p>
+            </div>
+          </header>
 
           <div class="row g-4">
             <div class="col-lg-6">
@@ -125,7 +177,7 @@
                   <label class="form-check-label" for="task2ShowCgpa">Show CGPA Badge</label>
                 </div>
 
-                <button type="button" id="task2ResetBtn" class="btn btn-outline-secondary">Reset</button>
+                <button type="button" id="task2ResetBtn" class="btn btn-outline-secondary"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
               </form>
 
               <div id="task2Output" class="lab06-output mt-3" aria-live="polite"></div>
@@ -137,13 +189,18 @@
             </div>
 
             <div class="col-lg-6">
-              <div class="card id-card shadow-sm" id="task2Card">
-                <div class="card-header fw-semibold text-center">Student ID Card</div>
+              <div class="card id-card" id="task2Card">
+                <div class="card-header id-card-header">
+                  <span class="id-card-logo"><i class="bi bi-mortarboard-fill"></i></span>
+                  <span class="id-card-univ">Your University</span>
+                  <span class="id-card-tag ms-auto">Student ID</span>
+                </div>
                 <div class="card-body" id="task2CardBody">
-                  <h4 class="mb-3" id="task2CardName">Your Name</h4>
-                  <p class="mb-1"><strong>Roll No:</strong> <span id="task2CardRoll">Roll Number</span></p>
-                  <p class="mb-1"><strong>Department:</strong> <span id="task2CardDept">Department</span></p>
-                  <p class="mb-0" id="task2CardSemester">Semester</p>
+                  <span class="id-avatar" id="task2Avatar" aria-hidden="true"></span>
+                  <h4 id="task2CardName">Your Name</h4>
+                  <p><strong>Roll No:</strong> <span id="task2CardRoll">Roll Number</span></p>
+                  <p><strong>Department:</strong> <span id="task2CardDept">Department</span></p>
+                  <p id="task2CardSemester">Semester</p>
                 </div>
               </div>
             </div>
@@ -154,12 +211,19 @@
       <!-- Task 3 -->
       <section id="task3" class="lab06-section card mb-4">
         <div class="card-body">
-          <h3 class="card-title h4">Task 3: Course Registration Form</h3>
+          <header class="task-header">
+            <span class="task-num">03</span>
+            <span class="task-icon"><i class="bi bi-pencil-square"></i></span>
+            <div class="task-heading">
+              <h3 class="card-title h4">Task 3: Course Registration Form</h3>
+              <p class="task-sub">Register with live validation and a clear success summary.</p>
+            </div>
+          </header>
 
           <div class="row">
-            <div class="col-lg-8">
+            <div class="col-12">
               <form id="task3Form" novalidate>
-                <div class="field mb-3">
+                <div class="field mb-3 span-2">
                   <label for="task3Name" class="form-label">Full Name</label>
                   <input type="text" id="task3Name" name="fullName" class="form-control" required minlength="3" placeholder="e.g. Ali Khan">
                   <div class="invalid-feedback"></div>
@@ -208,18 +272,18 @@
                   <div class="invalid-feedback"></div>
                 </div>
 
-                <div class="form-check mb-3">
+                <div class="form-check mb-3 span-2">
                   <input class="form-check-input" type="checkbox" id="task3ShowPassword">
                   <label class="form-check-label" for="task3ShowPassword">Show Password</label>
                 </div>
 
-                <div class="field form-check mb-3">
+                <div class="field form-check mb-3 span-2">
                   <input class="form-check-input" type="checkbox" id="task3Terms" name="terms" required>
                   <label class="form-check-label" for="task3Terms">I accept the terms and conditions</label>
                   <div class="invalid-feedback"></div>
                 </div>
 
-                <button type="submit" id="task3SubmitBtn" class="btn btn-primary">Register</button>
+                <button type="submit" id="task3SubmitBtn" class="btn btn-primary span-2"><i class="bi bi-send-check"></i> Register</button>
               </form>
 
               <div id="task3Output" class="lab06-output mt-4" aria-live="polite"></div>
@@ -231,40 +295,59 @@
       <!-- Task 4 -->
       <section id="task4" class="lab06-section card mb-4">
         <div class="card-body">
-          <h3 class="card-title h4 mb-3">Task 4: Student Management Dashboard</h3>
+          <header class="task-header">
+            <span class="task-num">04</span>
+            <span class="task-icon"><i class="bi bi-people-fill"></i></span>
+            <div class="task-heading">
+              <h3 class="card-title h4">Task 4: Student Management Dashboard</h3>
+              <p class="task-sub">Search, filter, sort and edit student records in one place.</p>
+            </div>
+          </header>
 
           <div id="task4Output" class="lab06-output mb-3" aria-live="polite"></div>
 
-          <div class="row g-3 mb-4 text-center">
+          <div class="row g-3 mb-4">
             <div class="col-6 col-lg-3">
-              <div class="card h-100">
-                <div class="card-body py-2">
-                  <div class="small text-muted">Total Students</div>
-                  <div class="fs-4 fw-bold" id="task4StatTotal">0</div>
+              <div class="card h-100 stat-box">
+                <div class="card-body">
+                  <span class="stat-icon"><i class="bi bi-people-fill"></i></span>
+                  <div>
+                    <div class="small text-muted">Total Students</div>
+                    <div class="stat-value" id="task4StatTotal">0</div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-6 col-lg-3">
-              <div class="card h-100">
-                <div class="card-body py-2">
-                  <div class="small text-muted">Average CGPA</div>
-                  <div class="fs-4 fw-bold" id="task4StatAverage">N/A</div>
+              <div class="card h-100 stat-box">
+                <div class="card-body">
+                  <span class="stat-icon"><i class="bi bi-graph-up"></i></span>
+                  <div>
+                    <div class="small text-muted">Average CGPA</div>
+                    <div class="stat-value" id="task4StatAverage">N/A</div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-6 col-lg-3">
-              <div class="card h-100">
-                <div class="card-body py-2">
-                  <div class="small text-muted">Highest CGPA</div>
-                  <div class="fs-4 fw-bold" id="task4StatHighest">N/A</div>
+              <div class="card h-100 stat-box">
+                <div class="card-body">
+                  <span class="stat-icon"><i class="bi bi-award-fill"></i></span>
+                  <div>
+                    <div class="small text-muted">Highest CGPA</div>
+                    <div class="stat-value" id="task4StatHighest">N/A</div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-6 col-lg-3">
-              <div class="card h-100">
-                <div class="card-body py-2">
-                  <div class="small text-muted">Academic Warning</div>
-                  <div class="fs-4 fw-bold" id="task4StatWarning">0</div>
+              <div class="card h-100 stat-box">
+                <div class="card-body">
+                  <span class="stat-icon"><i class="bi bi-exclamation-triangle-fill"></i></span>
+                  <div>
+                    <div class="small text-muted">Academic Warning</div>
+                    <div class="stat-value" id="task4StatWarning">0</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -272,7 +355,7 @@
 
           <div class="row g-4">
             <div class="col-lg-4">
-              <div class="card h-100">
+              <div class="card h-100 inner-panel">
                 <div class="card-body">
                   <h4 class="h5 mb-3">Add Student</h4>
                   <form id="task4AddForm" novalidate>
@@ -314,7 +397,7 @@
                       <div class="invalid-feedback"></div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Add Student</button>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-person-plus"></i> Add Student</button>
                   </form>
                 </div>
               </div>
@@ -323,7 +406,10 @@
             <div class="col-lg-8">
               <div class="row g-2 mb-3">
                 <div class="col-md-5">
-                  <input type="text" id="task4Search" class="form-control" placeholder="Search by name or roll number" aria-label="Search students">
+                  <div class="search-field">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                    <input type="text" id="task4Search" class="form-control" placeholder="Search by name or roll number" aria-label="Search students">
+                  </div>
                 </div>
                 <div class="col-md-4">
                   <select id="task4DeptFilter" class="form-select" aria-label="Filter by department">
@@ -345,7 +431,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-top bg-white py-3 mt-4">
+  <footer class="app-footer py-3 mt-4">
     <div class="container small text-muted text-center">
       Name: YOUR NAME | Roll No: YOUR ROLL NO | Course: CS-301L Full Stack Web Development | Lab 06
     </div>
@@ -353,7 +439,7 @@
 
   <!-- Task 4: Edit CGPA modal -->
   <div class="modal fade" id="task4EditModal" tabindex="-1" aria-labelledby="task4EditTitle">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <form class="modal-content" id="task4EditForm" novalidate>
         <div class="modal-header">
           <h5 class="modal-title" id="task4EditTitle">Edit CGPA</h5>
@@ -371,8 +457,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save CGPA</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check2-circle"></i> Save CGPA</button>
         </div>
       </form>
     </div>
